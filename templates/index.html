@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Black Box AI — Software Dev Clean Room</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}"
+            defer></script>
+</head>
+<body>
+<main class="container">
+
+    <header>
+        <h1>🛡️ Black Box AI: Software Dev Clean Room</h1>
+        <p class="muted">
+            Cross-company telemetry demo without returning private row values.
+        </p>
+    </header>
+
+    <section class="system-map">
+        <div class="system-box">🗄️ Central SQLite Telemetry DB</div>
+        <span>➜</span>
+        <div class="system-box">🛡️ Python Privacy Gateway</div>
+        <span>➜</span>
+        <div class="system-box">💻 Company Workspaces</div>
+    </section>
+
+    <section class="workspace">
+
+        <article class="panel a">
+            <div class="panel-header">
+                <h2>Company A Workspace</h2>
+                <span class="badge">
+                    Remaining ε:
+                    <span id="budgetDisplayA">2.00</span>
+                </span>
+            </div>
+
+            <label for="queryModeA">Select query</label>
+            <select id="queryModeA">
+                <option value="safe">
+                    Safe query: aggregate build duration (ε = 0.10)
+                </option>
+                <option value="attack">
+                    Simulate attempt to access Company B's private key
+                </option>
+            </select>
+
+            <button type="button" id="btnA" data-tenant="A">
+                Submit Secure Query
+            </button>
+
+            <div class="output" id="outA" aria-live="polite">
+                Output: waiting for a query.
+            </div>
+            <div class="terminal" id="logA"
+                 aria-live="polite"></div>
+        </article>
+
+        <article class="panel b">
+            <div class="panel-header">
+                <h2>Company B Workspace</h2>
+                <span class="badge">
+                    Remaining ε:
+                    <span id="budgetDisplayB">2.00</span>
+                </span>
+            </div>
+
+            <label for="queryModeB">Select query</label>
+            <select id="queryModeB">
+                <option value="safe">
+                    Safe query: aggregate build duration (ε = 0.10)
+                </option>
+                <option value="attack">
+                    Simulate attempt to access Company A's private key
+                </option>
+            </select>
+
+            <button type="button" id="btnB" data-tenant="B">
+                Submit Secure Query
+            </button>
+
+            <div class="output" id="outB" aria-live="polite">
+                Output: waiting for a query.
+            </div>
+            <div class="terminal" id="logB"
+                 aria-live="polite"></div>
+        </article>
+
+    </section>
+
+    <section class="db">
+        <h2>Local Demo Database Registry</h2>
+        <p class="muted">
+            Admin demo view of mock rows only. Never expose this route
+            in a real deployment.
+        </p>
+
+        <button type="button" id="refreshDbButton" class="db-button">
+            🔄 Fetch Demo Rows
+        </button>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Build duration</th>
+                    <th>Active bugs</th>
+                    <th>Patch key (demo secret)</th>
+                </tr>
+            </thead>
+            <tbody id="dbTableBody"></tbody>
+        </table>
+    </section>
+
+    <div class="warning">
+        Prototype only: not a verified hardware enclave or a complete
+        differential-privacy system. Use synthetic data only.
+    </div>
+
+    <div class="footer">
+        <button type="button" id="resetButton" class="reset">
+            Reset Demo
+        </button>
+    </div>
+
+</main>
+</body>
+</html>
